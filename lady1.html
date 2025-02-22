@@ -209,7 +209,7 @@ async function convertUSDtoINR(usdAmount) {
 }
 
 async function updateAllPrices() {
-    let usdAmount = 10; // Your product price in USD
+    let usdAmount = 0.3; // Your product price in USD
     let inrAmount = await convertUSDtoINR(usdAmount);
 
     // Select all elements with class "price" and update them
