@@ -114,8 +114,9 @@
           Your browser does not support the video tag.
           </video>
                   <div class="card-body">
-                   <a href="https://payhip.com/b/n5A0p" target="_blank">
-                        <button>Buy Now - 0.3$</button>
+                   <a href="https://payhip.com/b/NHOnF" target="_blank">
+                        <button>Price: <span class="price">Loading...</span>
+</button>
                     </a>
             <h5 class="card-title">Animated Typing Girl</h5>
             <p class="card-text">Typing on Laptop Animation – Watch as a woman types on her computer, her hand moving rhythmically, while her head slightly moves up and down, capturing the focus of work in motion. <br> This animation is
@@ -181,9 +182,12 @@
 
 
                 Enjoy the added interactivity and charm these animations bring to your work!</li>
-            <li class="list-group-item"><a href="https://payhip.com/b/n5A0p" target="_blank">
-                <button>Buy Now - 0.3$</button>
-            </a></li>
+              <div> 
+                  <a href="https://payhip.com/b/NHOnF" target="_blank">
+                        <button>Price: <span class="price">Loading...</span>
+</button>
+                    </a>
+             </div>
             <li class="list-group-item" style="margin: 20px; background-color: rgb(166, 166, 212);"><b>Files Included : Animated SVG image, Static SVG image, HTML Animation file, Hight quality : 4000*4400 PNG image, Good quality mp4.<br>
                 License : Personal and Commercial Use Allowed.<br>
                 Features : Animated, Customizable, Ready-to-Use, High-Quality SVG and PNG.<br>
@@ -209,5 +213,32 @@
 
 
 </body>
+<script>
+async function convertUSDtoINR(usdAmount) {
+    try {
+        let response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+        let data = await response.json();
+        let inrRate = data.rates.INR; // Get INR exchange rate
+        return (usdAmount * inrRate).toFixed(2); // Convert and round to 2 decimals
+    } catch (error) {
+        console.error("Error fetching exchange rate:", error);
+        return usdAmount * 83; // Use fallback value
+    }
+}
+
+async function updateAllPrices() {
+    let usdAmount = 0.3; // Your product price in USD
+    let inrAmount = await convertUSDtoINR(usdAmount);
+
+    // Select all elements with class "price" and update them
+    document.querySelectorAll(".price").forEach(element => {
+        element.innerText = `₹${inrAmount}`;
+    });
+}
+
+// Call function when the page loads
+window.onload = updateAllPrices;
+</script>
+
 
 </html>
