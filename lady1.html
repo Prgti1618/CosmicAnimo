@@ -105,7 +105,7 @@
           </video>
                   <div class="card-body">
                    <a href="https://payhip.com/b/NHOnF" target="_blank">
-                        <button>Price: <span id="price">Loading...</span>
+                        <button>Price: <span class="price">Loading...</span>
 </button>
                     </a>
             <h5 class="card-title">Attractive and Confident business woman animation</h5>
@@ -166,7 +166,7 @@
                 Enjoy the added interactivity and charm these animations bring to your work!</li>
              <div> 
                   <a href="https://payhip.com/b/NHOnF" target="_blank">
-                        <button>Price: <span id="price">Loading...</span>
+                        <button>Price: <span class="price">Loading...</span>
 </button>
                     </a>
              </div>
@@ -204,19 +204,24 @@ async function convertUSDtoINR(usdAmount) {
         return (usdAmount * inrRate).toFixed(2); // Convert and round to 2 decimals
     } catch (error) {
         console.error("Error fetching exchange rate:", error);
-        return usdAmount * 83; // Use approximate value if API fails
+        return usdAmount * 83; // Use fallback value
     }
 }
 
-async function updatePrice() {
-    let usdAmount = 0.3; // Replace with your product's USD price
+async function updateAllPrices() {
+    let usdAmount = 10; // Your product price in USD
     let inrAmount = await convertUSDtoINR(usdAmount);
-    document.getElementById("price").innerText = `₹${inrAmount}`;
+
+    // Select all elements with class "price" and update them
+    document.querySelectorAll(".price").forEach(element => {
+        element.innerText = `₹${inrAmount}`;
+    });
 }
 
 // Call function when the page loads
-window.onload = updatePrice;
+window.onload = updateAllPrices;
 </script>
+
 
 
 </html>
